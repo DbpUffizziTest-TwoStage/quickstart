@@ -74,7 +74,7 @@ jobs:
     name: Use Remote Workflow to Preview on Uffizzi
     needs:
       - cache-compose-file
-    uses: UffizziCloud/preview-action/.github/workflows/reusable.yaml@feature/49_pass_github_token_as_param
+    uses: UffizziCloud/preview-action/.github/workflows/reusable.yaml@v2
     with:
       # If this workflow was triggered by a PR close event, cache-key will be an empty string
       # and this reusable workflow will delete the preview deployment.
@@ -83,8 +83,6 @@ jobs:
       server: https://app.qa-gke.uffizzi.com/
       pr-number: ${{ needs.cache-compose-file.outputs.pr-number }}
       git-ref: ${{ needs.cache-compose-file.outputs.git-ref }}
-    secrets:
-      access-token: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: read
       pull-requests: write
